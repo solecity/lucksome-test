@@ -1,3 +1,8 @@
+:root {
+  --tile-max-size: 22vw;
+  --tile-padding: 0.5vw;
+}
+
 .container {
   --padding: 32px;
 
@@ -8,14 +13,15 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+}
 
-  section {
-    height: fit-content;
-    width: 100%;
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-  }
+section {
+  height: fit-content;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }

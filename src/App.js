@@ -8,7 +8,7 @@ import { STATE, RESULT_LENGTH, SLOT_MASK } from "./constants/constants";
 import "./App.css";
 
 function App() {
-  const [state, setState] = useState(STATE.ON);
+  const [state, setState] = useState(STATE.OFF);
   const [result, setResult] = useState([[]]);
 
   const getResult = () => {
@@ -22,13 +22,17 @@ function App() {
   };
 
   const getGrid = () => {
+    console.log("grid");
     setResult(nest_array(getResult(), SLOT_MASK, 3));
   };
 
   useEffect(() => {
-    if (state === STATE.ON) {
-      getGrid();
+    getGrid();
+  }, []);
 
+  useEffect(() => {
+    if (state === STATE.STOPPING) {
+      getGrid();
       setState(STATE.OFF);
     }
   }, [state]);
@@ -38,9 +42,9 @@ function App() {
       <h1>Slot Machine</h1>
 
       <section>
-        <SlotMachine result={result} />
+        <SlotMachine result={result} state={state} setState={setState} />
 
-        <UI setState={setState} />
+        <UI state={state} setState={setState} />
       </section>
     </div>
   );

@@ -1,0 +1,24 @@
+.container > button {
+  background-color: #ffd445;
+  padding: 12px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #855e37;
+  border: 5px solid #855e37;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.container > button:hover {
+  background-color: #fce087;
+}
+
+.container > button:active {
+  background-color: #fcb287;
+}
+
+.container > button:disabled {
+  background-color: #dfd0c7;
+  color: #aca8a3;
+  border-color: #aca8a3;
+}

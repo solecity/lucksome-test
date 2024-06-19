@@ -1,4 +1,4 @@
-import "./slotTile.css";
+import styles from "./slotTile.module.css";
 
 const importAll = (r) => {
   let images = {};
@@ -14,9 +14,9 @@ const images = importAll(
   require.context("../assets", false, /\.(png|jpe?g|svg)$/)
 );
 
-const SlotTile = ({ id }) => {
+const SlotTile = ({ id, state }) => {
   return (
-    <div className="tile">
+    <div className={`${styles.tile} ${styles[state]}`}>
       <img src={images[`${id}.png`]} alt={id} />
     </div>
   );

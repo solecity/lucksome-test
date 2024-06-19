@@ -1,15 +1,15 @@
 import { STATE } from "../constants/constants";
 
-import "./ui.css";
+import styles from "./ui.module.css";
 
-const UI = ({ setState }) => {
-  const spin = () => {
-    setState(STATE.ON);
-  };
+const UI = ({ state, setState }) => {
+  const spin = () => setState(STATE.ON);
 
   return (
-    <div className="ui">
-      <button onClick={spin}>Spin</button>
+    <div className={styles.container}>
+      <button onClick={spin} disabled={state !== STATE.OFF}>
+        {state !== STATE.OFF ? "Stop" : "Spin"}
+      </button>
     </div>
   );
 };
