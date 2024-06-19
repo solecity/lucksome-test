@@ -1,23 +1,37 @@
 import { useEffect, useState } from "react";
 
 import SlotMachine from "./components/slotMachine";
+import UI from "./components/ui";
+import { getRandomId, nest_array } from "./services/general";
+import { STATE, RESULT_LENGTH, SLOT_MASK } from "./constants/constants";
 
 import "./App.css";
 
 function App() {
+  const [state, setState] = useState(STATE.ON);
   const [result, setResult] = useState([[]]);
 
+  const getResult = () => {
+    let arr = [];
+
+    for (let i = 0; i < RESULT_LENGTH; i++) {
+      arr.push(getRandomId(1, 6));
+    }
+
+    return arr;
+  };
+
   const getGrid = () => {
-    setResult([
-      [1, 2, 3],
-      [1, 4, 2],
-      [3, 5, 6],
-    ]);
+    setResult(nest_array(getResult(), SLOT_MASK, 3));
   };
 
   useEffect(() => {
-    getGrid();
-  }, []);
+    if (state === STATE.ON) {
+      getGrid();
+
+      setState(STATE.OFF);
+    }
+  }, [state]);
 
   return (
     <div className="container">
@@ -26,7 +40,7 @@ function App() {
       <section>
         <SlotMachine result={result} />
 
-        <button>Spin</button>
+        <UI setState={setState} />
       </section>
     </div>
   );
